@@ -1,0 +1,172 @@
+\documentclass[11pt, manuscript, times]{custom}    % <--- 12pt font
+\usepackage[bottom=0.5in, top=1in,left=1in,right=0.5in]{geometry}% <--- 1 in margin
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage[toc, section, acronym]{glossaries}
+\usepackage{caption}
+\captionsetup{belowskip=0pt}
+
+\usepackage{tocloft}
+
+\usepackage{refcount}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % clear all fields
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[R]{%
+  \footnotesize
+  \thepage\space of \computelastpage
+}
+
+\makeatletter
+\newif\if@mainmatter
+\newcommand{\frontmatter}{%
+  \clearpage
+  \pagenumbering{Roman}
+  \edef\computelastpage{%
+    \uppercase{\romannumeral\numexpr\getpagerefnumber{LastFrontPage}-1\relax}}}
+\newcommand{\mainmatter}{%
+  \clearpage
+  \immediate\write\@auxout{\noexpand\newlabel{LastFrontPage}{{}{\arabic{page}}}}%
+  \@mainmattertrue
+  \pagenumbering{arabic}
+  \def\computelastpage{\pageref{LastPage}}}
+\makeatother
+
+
+\renewcommand{\title}{Kinematic Analysis of a Protostellar Multiple}
+\renewcommand{\author}{Nick Reynolds}
+\renewcommand{\date}{\today}
+\newcommand{\titlehead}[1]{{\huge\textbf{\uppercase{#1}}}}
+\newcommand{\majorheading}[1]{{\large\textbf{\uppercase{#1}}}}
+\newcommand{\minorheading}[1]{{\large{\uppercase{#1}}}}
+\newcommand{\heading}[1]{{\large{#1}}}
+
+
+%# New commands %#
+% molecules
+\newcommand{\ceo}{C$^{18}$O}
+\newcommand{\tco}{$^{13}$CO}
+\newcommand{\htco}{H$_{2}$CO}
+\newcommand{\htcn}{H$^{13}$CN}
+\newcommand{\nthp}{N$_2$H$+$}
+\newcommand{\ntdp}{N$_2$D$+$}
+\newcommand{\cso}{C$^{17}$O}
+\newcommand{\htcop}{H$^{13}$CO$^+$}
+\newcommand{\co}{$^{12}$CO}
+\newcommand{\sio}{SiO}
+\newcommand{\sot}{SO$_{2}$}
+\newcommand{\lsot}{SO$_{2}$~(J~=~13$_{2,12}\rightarrow$12$_{1,11}$)}
+\newcommand{\lco}{\co~(J~=~3$\rightarrow$2)}   % 346.~GHz
+\newcommand{\lhtcn}{\htcn~(J~=~4$\rightarrow$3)}   % 345.339756
+\newcommand{\lcso}{\cso~(J~=~3$\rightarrow$2)}   % 337.061104
+\newcommand{\lhtcop}{\htcop~(J~=~4$\rightarrow$3)}   % 346.998347
+\newcommand{\lsio}{\sio~(J~=~7$\rightarrow$6)}   % 347.000031
+%                 Continuum                     % 335.5
+% misc
+%\newcommand{\farcs}{\mbox{$.\!\!^{\prime\prime}$}}
+%\newcommand{\arcsec}{$^{\prime\prime}$}
+%\newcommand{\arcmin}{$^{\prime}$}
+\renewcommand{\deg}{\degr}
+%\newcommand{\micron}{$\mu$m}
+\newcommand{\pdspy}{\textit{pdspy}}
+
+\newcommand{\ab}{$\sim$}
+\newcommand{\kms}{km~s$^{-1}$}
+\newcommand{\source}{L1448~IRS3B}
+\newcommand{\sources}{L1448~IRS3A~and~B}
+\newcommand{\ra}{03$^{h}$25$^{m}$36.381$^{s}$}
+\newcommand{\dec}{30\deg45\arcmin14\farcs710}
+\newcommand{\radec}{RA~=~\ra, DEC~=~\dec}
+\newcommand{\tbol}{T$_{bol}$}
+\newcommand{\rsun}{R$_{\odot}$}
+\newcommand{\mstar}{M$_{*}$}
+\newcommand{\solm}{M$_{\odot}$}
+\newcommand{\msun}{M$_{\odot}$}
+\newcommand{\lsun}{L$_{\odot}$}
+\newcommand{\mdot}{$\dot{M}$}
+\newcommand{\x}{$\times$}
+
+% beam sizes
+\newcommand{\csobeam}{0\farcs21$\times$0\farcs13} % check this !!!!!!
+\newcommand{\siobeam}{0\farcs85$\times$0\farcs52}
+\newcommand{\cobeam}{0\farcs19$\times$0\farcs11}
+\newcommand{\htcopbeam}{0\farcs85$\times$0\farcs52}
+\newcommand{\htcnbeam}{0\farcs22$\times$0\farcs14}
+\newcommand{\contbeam}{0\farcs11$\times$0\farcs05}
+\newcommand{\tttfbeam}{0\farcs21$\times$0\farcs13}
+\newcommand{\contbeamhigh}{0\farcs08$\times$0\farcs05}
+
+
+
+% 20 page limit
+\makenoidxglossaries
+
+\include{glossary}
+
+\begin{document}
+
+% --------------------------------
+% frontmatter
+%\pagenumbering{roman}
+\frontmatter
+\include{frontmatter/titlepage}
+\include{frontmatter/committeepage}
+\include{frontmatter/copyright}
+\setcounter{page}{4}
+\cftaddnumtitleline{toc}{section}{}{Table of Contents}{\thepage}
+\tableofcontents
+
+\cftaddnumtitleline{toc}{section}{}{Abstract}{\computelastpage}
+\include{frontmatter/abstract}
+
+\mainmatter
+%\pagenumbering{arabic}
+%\setcounter{page}{3}
+
+% -----------------------------
+% main text
+\clearpage
+\input{introduction}
+\input{observations}
+\input{results}
+\input{keplerian}
+\input{rad}
+\input{discussion}
+\input{summary}
+\clearpage
+\input{tables/obstable.tex}
+\input{tables/correlator.tex}
+\input{tables/source_properties.tex}
+\input{tables/pvtable.tex}
+\input{tables/kinematictable.tex}
+%\input{tables/macc.tex}
+%\input{tables/selfcal.tex}
+\clearpage
+\input{figures}
+
+% -----------------------------
+% backmatter
+\clearpage
+
+% bib
+{
+\begin{tiny}
+\cftaddnumtitleline{toc}{section}{}{References}{\thepage}
+\bibliographystyle{apj}
+\bibliography{main}\label{sec:references}
+\end{tiny}
+}
+
+% glossary
+{
+\cftaddnumtitleline{toc}{section}{}{Glossary}{\thepage}
+\printnoidxglossary\label{sec:glossary}
+\printnoidxglossary[type=\acronymtype]
+}
+% appendex
+\end{document}

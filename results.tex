@@ -1,0 +1,104 @@
+
+%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#%#
+\section{Results}\label{sec:results}
+\subsection{879~\micron~Dust Continuum}\label{sec:dcont}
+The observations contain the known wide-binary system L1448 IRS3A and L1448 IRS3B and strongly detect continuum disks towards each protostellar system (Figure~\ref{fig:zoomincont}). We resolve the extended disk surrounding IRS3A (Briggs robust weight $=0.5$: Figure~\ref{fig:zoomincont}, superuniform: Figure~\ref{fig:widesuperuniform})
+
+\subsubsection{IRS3B}
+We resolve the extended circum-multiple disk of IRS3B and the spiral arm structure that extends asymmetrically to \ab600~au North-South  in diameter. Figure~\ref{fig:zoomincont}\space shows a zoom in on the IRS3B circumstellar disk, exhibiting clear substructure. Furthermore, we observe the three distinct continuum sources within the disk of IRS3B as identified by \citet{2016Natur.538..483T}, but with our superior resolution and sensitivity (\ab2$\times$\space higher), our observations are able to marginally resolve smaller-scale detail closer to the inner pair of sources, IRS3B-a and -b (Figure~\ref{fig:zoomincont}). We now constrain the origin point of the two spiral arm structures. Looking towards IRS3B-ab, we notice a decline in the disk continuum surface brightness in the inner region, north-eastward of IRS3B-ab. We also observe a ``clump'' \ab50~au East of IRS3B-b. However, given that this feature is located with apparent symmetry to IRS3B-a, it is possible that the two features (``clump'' and IRS3B-a) are a part of an inner disk structure as there appears a slight deficit of emission located between them (``deficit''), while IRS3B-b is just outside of the inner region.
+
+\subsubsection{IRS3B-ab}
+To best determine the position angle and inclination of the circum-multiple disk, we first have to remove the tertiary source that is embedded within the disk using the \textit{imfit} task in CASA by fitting two 2-D Gaussians with a constant emission offset.%(detailed fully in Appendix~\ref{sec:tertsub}).
+We fit the semi-major and semi-minor axis of the IRS3B-ab disk with a 2-D Gaussian using the task \textit{imfit} in CASA. To fit the general shape of the disk and not fit the shape of the spiral arms, we smooth the underlying disk structure (taper the uv visibilities at 500~k$\lambda$ during deconvolution using the CASA \textit{clean} task), yielding more appropriate image for single 2D Gaussian fitting. 
+
+From this fit, we recovered the disk size, inclination, and position angle, which are summarized in Table~\ref{table:obssummary3}. The protostellar disk of IRS3B has a deconvolved major axis and minor axis FWHM of 1\farcs73$\pm$0\farcs05\space and 1\farcs22$\pm$0\farcs04\space (497$\pm$17~au\space $\times$\space 351$\pm$12~au), respectively. This corresponds to an inclination angle of 45.0\deg$^{+2.2}_{-2.2}$\space assuming the disk is symmetric and geometrically thin, where an inclination angle of 0\deg\space corresponds to a face-on disk. We estimate the inclination angle uncertainty to be as much as 25\% \space by considering the south-east side of the disk as asymmetric and more extended. The position angle of the disk corresponds to 28$\pm$4\deg\space East-of-North. 
+% ((1 / (y * (1 - (x^2 / y^2)) ^ 0.5) * g ) ^ 2 + (x / (y^2 * (1 - (x^2 / y^2)) ^ 0.5) *  h) ^ 2) ^0.5 * acos(x/y), where x=351, y = 497, g=12, h=17
+
+\subsubsection{IRS3B-c}
+In the process of removing the clump around the tertiary companion IRS3B-c, we construct a model image of this clump that can be analyzed through the same methods. We recover a deconvolved major axis and minor axis FWHM of 0\farcs28$\pm$0\farcs05\space and 0\farcs25$\pm$0\farcs04\space (80$\pm$17~au\space $\times$\space 71$\pm$12~au), respectively, corresponding to a radius \ab40~au (assuming the disk is symmetric. This corresponds to an inclination angle of 27.0\deg$^{+19}_{-19}$\space and we fit a position angle of 21$\pm$1\deg\space East-of-North. We note the inclination estimates for IRS3B-c may not be realistic since the internal structure of the source (oblate, spherical, etc.) cannot be constrained from these observations, thus the reported angles are assuming a flat, circular internal structure, similar to a disk.
+% ((1 / (y * (1 - (x^2 / y^2)) ^ 0.5) * g ) ^ 2 + (x / (y^2 * (1 - (x^2 / y^2)) ^ 0.5) *  h) ^ 2) ^0.5 * acos(x/y), where x=71, y = 80, g=12, h=17
+
+\subsubsection{IRS3A}
+The protostellar disk of IRS3A has a FWHM radius of \ab100~au and has a deconvolved major axis and minor axis of 0\farcs69$^{+0.01}_{-0.01}$\space and 0\farcs25$^{+0.1}_{-0.1}$\space(197$\pm$3~au $\times$\space 72$\pm$3~au), respectively. This corresponds to an inclination angle of 68.6$\pm$1.2\deg\space assuming the disk is axially symmetric. The position angle of the disk corresponds to 133$\pm$1\deg\space East-of-North. We marginally resolve two emission deficits one beamwidth off IRS3A, along the major axis of the disk. The potential spirals appear to originate along the minor axis of the disk; however, due to the reconstructed beam elongation along the minor axis of the disk, we cannot fully resolve the substructure of the disk around IRS3A, limiting the characterization that we can perform on it.
+% ((1 / (y * (1 - (x^2 / y^2)) ^ 0.5) * g ) ^ 2 + (x / (y^2 * (1 - (x^2 / y^2)) ^ 0.5) *  h) ^ 2) ^0.5 * acos(x/y), where x=72,  y = 197, g=3, h=5
+
+\subsection{Disk Masses}\label{sec:diskmass}
+The traditional way to estimate the disk mass is via the dust component which dominates the disk continuum emission at millimeter wavelengths. If we make the assumption that the disk is isothermal, optically thin, without scattering, and the dust and gas are well mixed, then we can derive the disk mass from the equation:
+
+\begin{equation}\label{eq:dustmasseq}
+    M_{dust} = \frac{D^2 F_{\lambda}}{\kappa_{\lambda}B_{\lambda}(T_{dust})}
+\end{equation}
+where $D$ is the distance to the region (288~pc), $F_{\lambda}$\space is the flux density, $\kappa_{\lambda}$\space is the dust opacity, $B_{\lambda}$\space is the Planck function for a dust temperature, and $T_{dust}$\space is taken to be the average temperature of a typical protostar disk. The $\kappa_{\lambda}$\space at $\lambda$ = 1.3~mm was adopted from dust opacity models with value of 0.899~cm$^2$~g$^{-1}$, typical of dense cores with thin icy-mantles \citep{1994AA...291..943O}. We then appropriately scale the opacity:
+
+\begin{equation}
+    \kappa_{0.879 mm} = \kappa_{1.3 mm}\times\left(\frac{1.3 mm}{0.879 mm}\right)^{\beta}
+\end{equation}
+assuming $\beta$=1.78. We note that $\beta$\space values typical for protostars range from 1-1.8 \citep{2009ApJ...696..841K, 2013PhDT.......434S}. If we assume significant grain growth has occurred, typical of more evolved protoplanetary disks like that of \citet{2009ApJ...700.1502A}, we would then adopt a $\kappa_{0.899\mu m}\approx3.5$~cm$^{2}$~g$^{-1}$\space and $\beta$=1, which would lower our reported masses by a factor of 2.
+
+% nkrpy.astro.dustmass
+% from nkrpy.astro import dustmass
+% dense cores
+% dustmass(dist=288, dist_unit='pc', val=341, val_unit='GHz', temp=50.9, flux=2.21E-1, model_name='oh1994', opacity=0.899*(1.3/0.879)**1.78, gas_density=1e6)[-1][-1][-1]*100 # = 0.03533 irs3a
+% dustmass(dist=288, dist_unit='pc', val=341, val_unit='GHz', temp=40.1, flux=1.509, model_name='oh1994', opacity=0.899*(1.3/0.879)**1.78,, gas_density=1e6)[-1][-1][-1]*100 # = 0.2863 irs3b-ab 
+% dustmass(dist=288, dist_unit='pc', val=341, val_unit='GHz', temp=54.6, flux=4.228954E-1, model_name='oh1994', opacity=0.899*(1.3/0.879)**1.78, gas_density=1e6)[-1][-1][-1]*100 # = 0.0556513 irs3b-c, embedded
+% dustmass(dist=288, dist_unit='pc', val=341, val_unit='GHz', temp=38.7, flux=3.7E-1, model_name='oh1994', opacity=0.899*(1.3/0.879)**1.78, gas_density=1e6) * 100 # = 7.33213e-02 irs3b-c, alone
+% disks
+% dustmass(dist=288, dist_unit='pc', val=341, val_unit='GHz', temp=50.9, flux=2.21E-1, model_name='oh1994', opacity=2.4*(1.3/0.879)**1., gas_density=1e6)[-1][-1][-1]*100 # = 0.016038 irs3a
+% dustmass(dist=288, dist_unit='pc', val=341, val_unit='GHz', temp=40.1, flux=1.509, model_name='oh1994', opacity=2.4*(1.3/0.879)**1., gas_density=1e6)[-1][-1][-1]*100 # = 0.14553642 irs3b-ab 
+% dustmass(dist=288, dist_unit='pc', val=341, val_unit='GHz', temp=54.6, flux=4.228954E-1, model_name='oh1994', opacity=2.4*(1.3/0.879)**1., gas_density=1e6)[-1][-1][-1]*100 # = 0.028284 irs3b-c, embedded
+% dustmass(dist=288, dist_unit='pc', val=341, val_unit='GHz', temp=38.7, flux=3.7E-1, model_name='oh1994', opacity=2.4*(1.3/0.879)**1., gas_density=1e6)[-1][-1][-1] * 100 # = 0.037268 irs3b-c, alone
+The assumed luminosities of the sources are  13.0~\lsun\space and 14.4~\lsun\space for IRS3B and IRS3A at a distance of 300~pc, respectively \citep[8.3~\lsun\space and 9.2~\lsun\space for IRS3B and IRS3A, respectively at 230~pc; ][]{2016ApJ...818...73T}. We note that in the literature there are several luminosity values for IRS3B, differing from our adopted value by a factor of a few. Reconciling this is outside of the scope of this paper, but the difference could arise from source confusion in the crowded field and differences in SED modeling.
+
+We adopt a $T_{dust}\approx40~K$~for the IRS3B disk dust temperatures from the equation $T_{dust}=30~K\times\left(L_{*} / L_{\odot}\right)^{1/4}$, which is comparable to temperatures derived from protostellar models \citep[43~K:][]{2013ApJ...771...48T} and larger than temperatures assumed for the more evolved protoplanetary disks \citep[25~K:][]{2013ApJ...771..129A}. The compact clump around IRS3B-c has a peak brightness temperature of 55~K. Thus we adopt a T$_{dust}$ = 55~K since the emission may be optically thick ($T_{dust}$\ab $T_{B}$). We determine the peak brightness temperature of this clump by first converting the dust continuum image from Jy into K via the Rayleigh-Jean's Law\footnote{\citep[T = 1.222$\times10^3\frac{I~mJy~beam^{-1}}{(\nu~GHz)^2(\theta_{major}~arcsec)(\theta_{minor}~arcsec)}$~K, ][]{2009tra..book.....W}}.
+% converting from Jy/beam -> W/m^2/sr * micron 
+% 0.2 / (0.69*0.25 / (3600 * 180 / pi)**2) * 1e-26 * (speed of light in micron/s)
+% https://ncc.nesdis.noaa.gov/data/planck.html
+
+If we assume the canonical ISM gas-to-dust mass ratio of 100:1 \citep{1978ApJ...224..132B}, we estimate the total mass of the IRS3B-ab disk (IRS3B-c subtracted) to be 0.29~\solm\space for $\kappa_{0.879~mm}=$1.80~cm$^2$~g$^{-1}$, $T_{dust}\approx40~K$~\citep{2019ApJ...886....6T}, and $F_{\lambda}\approx1.51~Jy$. We note that the dust to gas ratio is expected to decrease as disks evolved from Class 0 to Class II \citep{2014ApJ...788...59W}, but for such a young disk, we expect it to still be gas rich and therefore have a gas to dust ratio more comparable with the ISM. We estimate 0.07~\solm\space to be associated with the circumstellar dust around IRS3B-c, from this analysis, for a T$_{dust}$ = 55~K. We perform the same analysis towards IRS3A and arrive at a disk mass estimate of 0.04~\solm, for a $T_{dust}$ = 51~K and $F_{\lambda}\approx0.19~Jy$.
+
+The dust around the tertiary source, IRS3B-c, is compact and it is the highest peak intensity source in the system, and thus the optical depth needs to be constrained. An optically thick disk will be more massive than what we calculate while an optically thin disk will be more closely aligned with our estimates. We calculate the average deprojected, cumulative surface density from the mass and radius provided in Table~\ref{table:obssummary3}, and determine the optical depth via 
+\begin{align*}
+\tau_{0.879~mm} &= \kappa_{0.879 mm}\Sigma \\
+ &=\frac{D^2 F_{\lambda}}{\pi R_{disk}^{2}B_{\lambda}(T_{dust})}
+\end{align*}
+from \citep{2016Natur.538..483T}. The dust surrounding the tertiary source has an average dust surface density ($\Sigma$) of \ab2.6~g~cm$^{-2}$\space and an optical depth ($\tau$) of \ab2.14, indicative of being optically thick, while IRS3B-ab (IRS3B-c clump subtracted) is not optically thick if we assume dust is equally distributed throughout the disk with an average dust surface density of \ab0.17~g~cm$^{-2}$\space and an optical depth of 0.34. However, since spiral structure is present, these regions of concentrated dust particles are likely much more dense. L1448 IRS3A has an average dust surface density of 0.32~g~cm$^{-2}$\space and an optical depth of 0.57. Optically thick emission indicates that our dust continuum mass estimates are likely lower limits for the mass enclosed in the clump surrounding IRS3B-c, while the IRS3B-ab circum-multiple disk and the IRS3A circumstellar disk are probably optically thin except for the inner regions. 
+
+
+An effect that could impact our measurements of disk masses and surface densities is scattering. Scattering reduces the emission of optically thick regions of the disk to appear optically thin, thus underestimating the optical depth. \citet{2019ApJ...877L..18Z}, showed that in the lower limit of extended ($>100$~au) disks, this effect underestimates the disk masses by a factor of 2. However, towards the inner regions, this effect might be enhanced to factors $>10$. \citet{2020ApJ...892..136S} show that for wavelengths \ab870~\micron\space and 100~\micron \space size particles, only a $\Sigma\approx3.2$~(g~cm$^{-2}$) is needed for the particles to be optically thick. Thus our masses could be several factors higher.
+
+% \footnote{The dependence of the chosen $\kappa$\space cancels and thus is independent of the value chosen. This method is similar to solving the first Taylor Term of the equation of radiative transfer $I_{\nu}=I_{0}e^{-\tau_{\nu}} + S_{\nu}\left(1 - e^{-\tau_{\nu}}\right)$.}
+% optical depth
+% from nkrpy import constants, unit ; import numpy as np
+% def sigma_fwhm_radius(val): return val * 2. * np.sqrt(2 * np.log(2)) * 288 * unit('au', 'cm', 1) / 2. # from arcsec to cm
+% (7.33216033e-04 * constants.msun) / (sigma_fwhm_radius(0.118124) * sigma_fwhm_radius(0.105183) * constants.pi) * 0.899 * (1.3/0.879) ** 1.78  # = 2.6194385 irs3b-c
+% (0.0029 * constants.msun) / (sigma_fwhm_radius(0.732674) * sigma_fwhm_radius(0.517271) * constants.pi) * 0.899 * (1.3/0.879) ** 1.78  # = 0.33964798 irs3b-ab
+% (0.0004 * constants.msun) / (sigma_fwhm_radius(0.291733) * sigma_fwhm_radius(0.106463) * constants.pi) * 0.899 * (1.3/0.879) ** 1.78  # = 0.57165721 irs3a
+% def tau(flux, abprod, dusttemp, freq, sourcetmp):
+%     s = (planck_nu(dusttemp, freq, 'ghz') - planck_nu(2.725, freq, 'ghz')) * 1E-3
+%     iobs = (flux * c.jy * 1E-3) / (np.pi * (abprod) / 4. * (np.pi / 180. / 3600.) ** 2)
+%     isource = (planck_nu(sourcetmp, freq, 'ghz')) * 1E-3
+%     return -np.log((iobs - s) / (isource - s))
+% tau(1.51, 0.732674*0.517271*4, 40.1, 341.0434, 0)    # = 0.62657839 IRS3B-ab
+% tau(3.7E-1, 0.118124*0.118124 * 4, 54.6, 341.0434, 244)  # =  IRS3B-c
+% tau(2.21E-1, 0.291733 *0.106463 * 4, 50.9, 341.0434, 0) # = 0.98206753 IRS3A
+
+% 90 - np.arcsin(0.25070120645412997/0.686978716197014) * 180. / np.pi  # = 68.59654029709603 IRS3a Fin
+% 90 - np.arcsin(0.24768703679649035/0.27816076299923587) * 180. / np.pi  # = 27.070701513727833 IRS3b-c in
+% 90 - np.arcsin(1.2180801195132043/1.7253154216730058) * 180. / np.pi  # = 45.089262257966524 IRS3b-ab in
+
+
+\subsection{Molecular Line Kinematics}\label{sec:kinematics}
+Additionally, we observe a number of molecular lines (\co, \sio, \htcop, \htcn/\sot, \cso) towards IRS3B and IRS3A to resolve outflows, envelope, and disk kinematics, with the goal of disentangling the dynamics of the systems. We summarize the observations of each of the molecules below and provide a more rigorous analysis towards molecules tracing disk kinematics. While outflows are important for the evolution and characterization of YSOs, the analysis of these complex structures is beyond the scope of this paper because we are focused on the disk and envelope. We find \co\space and \sio\space emission primarily traces outflows, \htcop\space emission traces the inner envelope, \htcn/\sot\space emission traces energetic gas which can take the form of outflow launch locations or inner disk rotations, and \cso\space primarily traces the disk.
+%Non-disk/envelope tracing molecular lines (\co\space and \sio) are discussed in Appendix~\ref{sec:outflow}.
+
+
+We construct moment 0 maps, which integrate the data cube over the frequency axis, to reduce the 3D nature of datacubes to 2D images. These images show spatial locations of strong emission and deficits. To help preserve some frequency information from the datacubes, we integrated at specified velocities to separate the various kinematics in these systems. %However, when integrating over any velocity ranges, we do not preserve the full velocity information of the emission, thus we provide spectral profiles of \cso\space emission toward the IRS3B-ab, IRS3B-c, and IRS3A sources in Appendix~\ref{sec:spectra}.
+
+\subsubsection{\cso\space Line Emission}\label{sec:csoemission}
+The \cso\space emission (Figure~\ref{fig:irs3bc17omoment} and~\ref{fig:irs3abc17omoment1}) appears to trace the gas kinematics within the circumstellar disks because the emission is largely confined to the scales of the continuum disks for both IRS3B and IRS3A, appears orthogonal to the outflows, and has a well-ordered data cube indicative of rotation (Figure~\ref{fig:irs3abc17omoment1}). \cso\space is a less abundant molecule \citep[ISM $\lbrack$\co$\rbrack/\lbrack$\cso$\rbrack\approx$1700:1; e.g.][]{1994ARAA..32..191W} isotopologue of \co\space\citep[ISM $\lbrack H_{2}\rbrack/\lbrack$\co$\rbrack\approx$10$^{4}$:1; e.g.][]{2009AA...503..323V}, and thus traces gas closer to the disk midplane. Towards IRS3B, the emission extends out to \ab1\farcs8~(\ab530~au), further than the continuum disk (\ab500~au) and has a velocity gradient indicative of Keplerian rotation. Towards IRS3A, the emission is much fainter, however, from the moment 0 maps, \cso\space still appears to trace the same region as the continuum disk.
+
+%\subsubsection{\htcop\space Line Emission}\label{sec:htcopemission}
+%The \htcop\space emission (Figure~\ref{fig:h13copmomentc17o}~and~\ref{fig:irs3ah13copmoment}) detected within these observations probe large scale structures ($>$5\arcsec), much larger than the size of the continuum disk of IRS3B and scales \ab1\farcs5 towards IRS3A. For IRS3B, the emission structure is fairly complicated with multiple emission peaks near line center and emission deficits near the sources IRS3B-ab$+$c, while appearing faint towards IRS3A. The data cube appears kinematically well ordered, indicating possible rotating structures. Previous studies suggested HCO$+$\space observations are less sensitive to the outer envelope structure, probing densities $\ge10^{5}$~cm$^{-3}$\space and temperatures $>25$~K\space \citep{1999ARAA..37..311E}. However, follow up surveys \citep{2009AA...507..861J} found this molecule to primarily trace the outer-circumstellar disk and inner envelope kinematics, and were unable to observe the disks of Class 0 protostars from these observations alone. \citet{2009AA...507..861J}\space postulated that in order to disentangle dynamical structures on $<$100~au scales, a less abundant or more optically thin tracer (like that of \htcop) would be required with high resolutions. However, this molecular line, as shown in the integrated intensity map of \htcop\space (Figure~\ref{fig:h13copmomentc17o}~and~\ref{fig:irs3ah13copmoment}) traces scales much larger than the continuum or gaseous disk of IRS3B and IRS3A and thus is likely tracing the inner envelope.
+
+%\subsubsection{\htcn\space Line Emission}\label{sec:htcnemission}
+%The \htcn/\sot\space emission (Figures~\ref{fig:irs3bh13cnmoment}~and~\ref{fig:irs3ah13cnmoment}) is a blended molecular line, with a separation of 1~\kms\space(Table~\ref{table:obssummary2}). The integrated intensity maps towards IRS3B appear to trace an apparent outflow launch location from the IRS3B-c protostar (Figure~\ref{fig:irs3bh13cnmoment}) based on the spatial location and parallel orientation to the outflows. The \htcn/\sot\space emission towards IRS3B is nearly orthogonal to the disk continuum major axis position angle and indicates that the emission towards IRS3B is tracing predominantly \sot\space and not \htcn

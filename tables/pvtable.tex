@@ -1,0 +1,20 @@
+\explain{Cut IRS33B-ab and merged with IRS3B for clarity.}
+\begin{deluxetable}{ccccccc}
+\tablewidth{0pt}
+%\rotate
+\tabletypesize{\scriptsize}
+\tablecaption{PV Diagram Fitting}
+\tablehead{
+  \colhead{Source} & \colhead{Center RA} & \colhead{Center Dec} & \colhead{Inclination} & \colhead{Position Angle} & \colhead{Stellar Mass} & \colhead{Velocity} \\
+  & \colhead{(\arcsec)} & \colhead{(\arcsec)} & \colhead{(\deg)} & \colhead{(\deg)} & \colhead{(\solm)} & \colhead{(km~s$^{-1}$)}\\
+}
+\startdata
+IRS3B    & 03$^{h}$25$^{m}$36.317$^{s}$ & 30\deg45\arcmin15\farcs005 & 45 & 29 & 1.15$^{+0.09}_{-0.09}$ & 4.8\\ %& 0.64\\
+IRS3B-c  & 03$^{h}$25$^{m}$36.382$^{s}$ & 30\deg45\arcmin14\farcs715 & - & - & $<$0.2\tablenotemark{a} & - \\%& -\\
+IRS3A    & 03$^{h}$25$^{m}$36.502$^{s}$ & 30\deg45\arcmin21\farcs859 & 69 & 125 & 1.4\tablenotemark{b}& 5.4\\ %&  0.06 \\
+\enddata
+\tablecomments{Summary of PV diagram stellar parameter estimates with 3-$\sigma$\space confidence interval of the best fit walkers generated from emcee. The inclination and position angle estimates are provided by 2-D Gaussian fitting of the uv-truncated data and is further confirmed with the PV diagram analysis.}
+\tablenotetext{a}{The upper limit for IRS3B-c of $<$0.2~\msun\space is derived from its apparent lack of significant influence on the disk kinematics within its immediate proximity. Furthermore, we estimate from the dust emission that the mass of the gas and dust clum surrounding the protostar is \ab0.07~\msun. So the combined mass of the clump and protostar must be $<$0.2~\msun.% Figure~\ref{fig:l1448irs3b_c17o_pv_tert} shows the mass limit estimates of the tertiary of the source, with emission outside of the dotted lines indicating additional mass if perturbing the disk.
+}
+\tablenotetext{b}{IRS3A, was marginally resolved and no sufficient numeric fits could be achieved with simple PV-diagram fitting. These estimates are provided by fitting the curve by eye and are not designated to be the final results and simply provide further constraints for the priors for the more rigorous kinematic modeling.}
+\end{deluxetable}\label{table:pvtable}
